@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./assets/js/generateMarkdown.js');
 
-// TODO: Change to README prompts for user input
 inquirer
   .prompt([
     {
@@ -35,6 +34,23 @@ inquirer
       type: 'editor',
       name: 'test',
       message: 'Please enter text for the Test Instructions.'
+    },
+    {
+      type: 'list',
+      name: 'license',
+      message: 'Which license would you like to use?',
+      // TODO: Figure out the actual choices
+      choices: ['MIT', 'Other']
+    },
+    {
+      type: 'input',
+      name: 'github',
+      message: 'What is your GitHub username?'
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'What is your contact email?'
     }
   ])
   .then((answers) => {
