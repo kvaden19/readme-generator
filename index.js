@@ -1,7 +1,8 @@
 // Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-// TODO: require generateMarkdown
+const generate = require('./generateMarkdown.js');
+const generateMarkdown = require('./generateMarkdown.js');
 
 // TODO: Change to README prompts for user input
 inquirer
@@ -24,13 +25,10 @@ inquirer
     //   choices: ['email', 'phone', 'telekinesis'],
     // },
   ])
-  // TODO: write to a .md file
   .then((answers) => {
-    // TODO: adapt - call generateMarkdown
     const filename = `${answers.title.toLowerCase().split(' ').join('')}-README.md`;
 
-    // TODO: adapt - write to md file
-    fs.writeFile(filename, JSON.stringify(answers, null, '\t'), (err) =>
+    fs.writeFile(filename, generateMarkdown(answers), (err) =>
       err ? console.log(err) : console.log('Success!')
     );
   });
