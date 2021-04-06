@@ -1,8 +1,7 @@
 // Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generate = require('./generateMarkdown.js');
-const generateMarkdown = require('./generateMarkdown.js');
+const generateMarkdown = require('./assets/js/generateMarkdown.js');
 
 // TODO: Change to README prompts for user input
 inquirer
@@ -10,25 +9,39 @@ inquirer
     {
       type: 'input',
       name: 'title',
-      message: 'What is the title of your project?',
+      message: 'What is the title of your project?'
     },
-    // {
-    //   type: 'checkbox',
-    //   message: 'What languages do you know?',
-    //   name: 'stack',
-    //   choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
-    // },
-    // {
-    //   type: 'list',
-    //   message: 'What is your preferred method of communication?',
-    //   name: 'contact',
-    //   choices: ['email', 'phone', 'telekinesis'],
-    // },
+    {
+      type: 'editor',
+      name: 'description',
+      message: 'Please enter text for the Description.'
+    },
+    {
+      type: 'editor',
+      name: 'installation',
+      message: 'Please enter text for the Installation Instructions.'
+    },
+    {
+      type: 'editor',
+      name: 'usage',
+      message: 'Please enter text for the Usage Information.'
+    },
+    {
+      type: 'editor',
+      name: 'contribution',
+      message: 'Please enter text for the Contribution Guidelines.'
+    },
+    {
+      type: 'editor',
+      name: 'test',
+      message: 'Please enter text for the Test Instructions.'
+    }
   ])
   .then((answers) => {
-    const filename = `${answers.title.toLowerCase().split(' ').join('')}-README.md`;
+    const filename = `README.md`;
+    const filepath = `./output/${filename}`;
 
-    fs.writeFile(filename, generateMarkdown(answers), (err) =>
+    fs.writeFile(filepath, generateMarkdown(answers), (err) =>
       err ? console.log(err) : console.log('Success!')
     );
   });
