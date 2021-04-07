@@ -11,3 +11,4 @@
 
 ## Testing:
 - Title is null
+- License is null
