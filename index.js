@@ -3,6 +3,17 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./assets/js/generateMarkdown.js');
 
+function init() {
+  try {
+    fs.unlinkSync('./output/README.md')
+  } finally {
+    return;
+  }
+}
+
+// Function call to initialize app
+init();
+
 inquirer
   .prompt([
     {
@@ -10,31 +21,31 @@ inquirer
       name: 'title',
       message: 'What is the title of your project?'
     },
-    // {
-    //   type: 'editor',
-    //   name: 'description',
-    //   message: 'Please enter text for the Description.'
-    // },
-    // {
-    //   type: 'editor',
-    //   name: 'installation',
-    //   message: 'Please enter text for the Installation Instructions.'
-    // },
-    // {
-    //   type: 'editor',
-    //   name: 'usage',
-    //   message: 'Please enter text for the Usage Information.'
-    // },
-    // {
-    //   type: 'editor',
-    //   name: 'contribution',
-    //   message: 'Please enter text for the Contribution Guidelines.'
-    // },
-    // {
-    //   type: 'editor',
-    //   name: 'test',
-    //   message: 'Please enter text for the Test Instructions.'
-    // },
+    {
+      type: 'editor',
+      name: 'description',
+      message: 'Please enter text for the Description.'
+    },
+    {
+      type: 'editor',
+      name: 'installation',
+      message: 'Please enter text for the Installation Instructions.'
+    },
+    {
+      type: 'editor',
+      name: 'usage',
+      message: 'Please enter text for the Usage Information.'
+    },
+    {
+      type: 'editor',
+      name: 'contribution',
+      message: 'Please enter text for the Contribution Guidelines.'
+    },
+    {
+      type: 'editor',
+      name: 'test',
+      message: 'Please enter text for the Test Instructions.'
+    },
     {
       type: 'list',
       name: 'license',
@@ -60,9 +71,3 @@ inquirer
       err ? console.log(err) : console.log('Success!')
     );
   });
-
-// TODO: Create a function to initialize app
-// function init() {}
-
-// Function call to initialize app
-// init();
